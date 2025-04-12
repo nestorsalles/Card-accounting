@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>💳 Visualizador de Cartões</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+      background: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    .cartao {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .cartao h2 {
+      margin-top: 0;
+    }
+    .compra {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .vazio {
+      text-align: center;
+      font-style: italic;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>💳 Cartões Salvos no LocalStorage</h1>
+  <div id="conteudo"></div>
+
+  <script>
+    const conteudo = document.getElementById('conteudo');
+    const dados = localStorage.getItem('cartoes');
+
+    if (!dados) {
+      conteudo.innerHTML = '<p class="vazio">Nenhum cartão salvo no momento.</p>';
+    } else {
+      const cartoes = JSON.parse(dados);
+
+      cartoes.forEach(cartao => {
+        const divCartao = document.createElement('div');
+        divCartao.className = 'cartao';
+        divCartao.innerHTML = `<h2>💳 ${cartao.nome}</h2>`;
+
+        cartao.compras.forEach(compra => {
+          const divCompra = document.createElement('div');
+          divCompra.className = 'compra';
+          divCompra.textContent = `🛒 ${compra.texto}`;
+          divCartao.appendChild(divCompra);
+        });
+
+        conteudo.appendChild(divCartao);
+      });
+    }
+  </script>
+</body>
+</html>

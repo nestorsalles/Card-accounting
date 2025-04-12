@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Cartões</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>💳 Registro de Compras no Cartão</h2>
+
+    <!-- Etapa 1: Nome do Cartão -->
+    <form id="formCartao">
+      <input type="text" id="nomeCartao" placeholder="Digite o nome do cartão" required />
+      <button type="submit">Iniciar Cartão</button>
+    </form>
+
+    <!-- Etapa 2: Compras -->
+    <form id="formCompra" class="hidden">
+      <h3 id="cartaoAtual"></h3>
+      <input type="text" id="nomeCompra" placeholder="Nome da Compra" required />
+      <select id="tipoCompra" required>
+        <option value="">Tipo de compra</option>
+        <option value="única">Única</option>
+        <option value="parcelada">Parcelada</option>
+      </select>
+      <input type="number" id="totalParcelas" placeholder="Total de Parcelas" />
+      <input type="number" id="parcelaAtual" placeholder="Parcela Atual" />
+      <input type="text" id="valorParcela" placeholder="Valor da Parcela: R$" required />
+      <div class="button-group">
+        <button type="submit">Adicionar Compra</button>
+        <button type="button" id="btnFinalizarCartao">Finalizar Cartão</button>
+      </div>
+    </form>
+
+    <!-- Resumo compras atuais -->
+    <div id="comprasAtuaisResumo" class="cartao-resumo hidden">
+      <h4>💳 Compras atuais</h4>
+      <div id="listaComprasAtuais"></div>
+      <p id="totalComprasAtuais"></p>
+    </div>
+
+    <!-- Resumo de cartões já finalizados -->
+    <div id="resumoCartoes"></div>
+    <div id="totalGeral"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
